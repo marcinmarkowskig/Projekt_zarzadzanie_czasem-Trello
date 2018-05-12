@@ -47,11 +47,24 @@ class SignIn extends Component {
       </form>
     );
   }
-
 }
 
-export default reduxForm({ // reduxForm było nazywane reduxForm helper
-  form: 'SignInForm'//to może byc dowolna nazwa, ale nie może się powtarzac
+function validate(values) {
+    const errors = {};
+
+    if (!values.email) {
+      errors.email = "Wprowadź email!";
+    }
+    if(!values.password) {
+      errors.password = "Wprowadź hasło!";
+    }
+
+    return errors;
+}
+
+export default reduxForm({
+  validate: validate,
+  form: 'SignInForm'
 })(
     connect(null,{ signIn })(SignIn)
 );
