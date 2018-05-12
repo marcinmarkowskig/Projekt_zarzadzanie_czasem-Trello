@@ -28,9 +28,31 @@ export function signIn(values) {
   };
 }
 //--------------------------------------
-export function createUser() {}
+export function createUser(values, callback) {
+  let axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
 
-//pobranie tablicy
+  let values2 = {
+    "user": values
+  }
+
+  let request = axios.post('http://kanban-project-management-api.herokuapp.com/v1/users', values2, axiosConfig)
+
+    .then(() => callback())
+  .catch((error) => {
+    console.log('Error, trzeba poprawiac :/ ' + error);
+  });
+
+  return {
+    type: CREATE_USER,
+    payload: request
+  };
+}
+
+//------------------------------------
 export function getUserTables() {
   let axiosConfig = {
     headers: {

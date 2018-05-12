@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../actions';
-import { Field, reduxForm } from 'redux-form'; //ReduxForm
-//import { Link } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 class SignIn extends Component {
   renderField(field) {
@@ -44,7 +44,14 @@ class SignIn extends Component {
           component={this.renderField}
         />
         <button type="submit" className="btn btn-primary">Zaloguj</button>
+        <div>
+          <label>Nie masz konta?</label>
+          <Link className="btn btn-primary" to="create-user">
+            Utwórz nowe konto
+          </Link>
+        </div>
       </form>
+
     );
   }
 }

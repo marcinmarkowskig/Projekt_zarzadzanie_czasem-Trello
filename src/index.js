@@ -5,9 +5,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import promise from 'redux-promise';
 
-import CreateUser from './components/create_user';
+//import CreateUser from './components/create_user';
 import GetUserTables from './components/get_user_tables';
 import SignIn from './components/sign_in';
+import CreateUser from './components/create_user';
 
 import reducers from './reducers';
 
