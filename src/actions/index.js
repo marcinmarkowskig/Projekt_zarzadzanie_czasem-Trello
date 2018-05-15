@@ -22,7 +22,7 @@ export function signIn(values, callback) {
     console.log('signIn:'),
     console.log(request2.data.data.user),//działa dobrze
     getUserTables(request2.data.data.user.email, request2.data.data.user.authentication_token)
-    callback()
+    //callback()
   })
   .catch((error) => {
     console.log('Error, trzeba poprawiac :/ ' + error);
@@ -83,9 +83,6 @@ export function getUserTables(email, authentication_token) {
     console.log('Error, trzeba poprawiac :/ ' + error);
   });
 
-  if (!request) {
-    return <div>Loading...</div>
-  }
   return {
     type: GET_USER_TABLES,
     payload: request
