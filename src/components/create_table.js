@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { signIn } from '../actions';
+import { createTable } from '../actions';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 
-class SignIn extends Component {
+class CreateTable extends Component {
   renderField(field) {
     const { meta: { touched, error} } = field;
     const className = `form-group ${touched && error ? 'has-danger' : ''}`;
@@ -24,12 +24,8 @@ class SignIn extends Component {
     );
   }
 
-  // onSubmit(values) {
-  //   this.props.signIn(values)
-  // }
-
   onSubmit(values) {
-    this.props.signIn(values, () => {
+    this.props.createTable(values, () => {
       this.props.history.push('/get-user-tables');
     });
   }
@@ -39,27 +35,22 @@ class SignIn extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <Field
-          label="Email"
-          name="email"
-          component={this.renderField}
-        />
-        <Field
-          label="Password"
-          name="password"
-          component={this.renderField}
-        />
         <div>
-            <button type="submit" className="btn btn-primary">Zaloguj</button>
+          <p></p>
+            <label>Utwórz nową tablicę</label>
+          <p></p>
         </div>
+        <Field
+          label="name"
+          name="name"
+          component={this.renderField}
+        />
         <div>
-          <p></p>
-            <label>Nie masz konta?</label>
-          <p></p>
-          <Link className="btn btn-primary" to="create-user">
-            Utwórz nowe konto
+            <button type="submit" className="btn btn-primary">Utwórz</button>
+        </div>
+          <Link className="btn btn-danger" to="/get-user-tables">
+            Anuluj
           </Link>
-        </div>
       </form>
 
     );
@@ -69,11 +60,8 @@ class SignIn extends Component {
 function validate(values) {
     const errors = {};
 
-    if (!values.email) {
-      errors.email = "Wprowadź email!";
-    }
-    if(!values.password) {
-      errors.password = "Wprowadź hasło!";
+    if (!values.name) {
+      errors.name = "Wprowadź nazwę tablicy!";
     }
 
     return errors;
@@ -81,7 +69,7 @@ function validate(values) {
 
 export default reduxForm({
   validate: validate,
-  form: 'SignInForm'
+  form: 'CreateTableForm'
 })(
-    connect(null,{ signIn })(SignIn)
+    connect(null,{ createTable })(CreateTable)
 );

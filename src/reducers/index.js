@@ -4,6 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
   tables: TrelloReducers,
+  groups: TrelloReducers,
   form: formReducer
 });
 

@@ -13,22 +13,7 @@ class GetUserTables extends Component {
     this.props.getUserTables(email, authentication_token);
   }
 
-  // fetchTables() {
-  //   return _.map(this.props.tables, table => {
-  //        return (
-  //          <li className="list-group-item" key={table.id}>
-  //              {table.name}
-  //          </li>
-  //        );
-  //      });
-  // }
 
-//{this.fetchTables()}
-
-  // fetchTables() {
-  //   this.getUserTables(email, authentication_token)
-  // }
-      //{this.fetchTables()}
   render() {
     return (
       <div>
